@@ -15,8 +15,8 @@ import {
   View,
 } from 'react-native';
 
-//var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 var REQUEST_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=5b0ea911a68feb390b90a878c64da594&language=en-US&sort_by=popularity.desc';
+var Accordion = require('react-native-accordion');
 
 export default class AwesomeProject extends Component {
   constructor(props) {
@@ -54,7 +54,6 @@ export default class AwesomeProject extends Component {
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMovie}
-        renderSeparator={this._renderSeparator}
         style={styles.listView}
       />
     );
@@ -71,19 +70,47 @@ export default class AwesomeProject extends Component {
   }
 
   renderMovie(results) {
-    return (
-      <View style={styles.container}>
-        <Image
-          source={{uri: 'https://image.tmdb.org/t/p/w500'+results.poster_path}}
-          style={styles.thumbnail}
-        />
+       var header = (
+       <View style={styles.container}>
+             <Image
+                  source={{uri: 'https://image.tmdb.org/t/p/w500'+results.poster_path}}
+                  style={styles.thumbnail}
+             />
+             <View style={styles.rightContainer}>
+                  <Text style={styles.title}>{results.title}</Text>
+                  <Text style={styles.year}>{results.release_date}</Text>
+                  <Text style={styles.year}>{results.vote_average}</Text>
+             </View>
+       </View>
+      );
+      var content = (
         <View style={styles.rightContainer}>
-          <Text style={styles.title}>{results.title}</Text>
-          <Text style={styles.year}>{results.release_date}</Text>
-          <Text style={styles.year}>{results.vote_average}</Text>
+              <Text style={styles.title}>{results.title}</Text>
+              <Text style={styles.year}>{results.release_date}</Text>
+              <Text style={styles.year}>{results.vote_average}</Text>
         </View>
-      </View>
-    );
+
+      );
+      return (
+        <Accordion
+          header={header}
+          content={content}
+          easing="easeOutCubic"
+        />
+      );
+//    return (
+//      <View style={styles.container}>
+//        <Image
+//          source={{uri: 'https://image.tmdb.org/t/p/w500'+results.poster_path}}
+//          style={styles.thumbnail}
+//        />
+//        <View style={styles.rightContainer}>
+//          <Text style={styles.title}>{results.title}</Text>
+//          <Text style={styles.year}>{results.release_date}</Text>
+//          <Text style={styles.year}>{results.vote_average}</Text>
+//        </View>
+//      </View>
+//    );
   }
 }
 
