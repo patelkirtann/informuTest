@@ -78,19 +78,21 @@ export default class AwesomeProject extends Component {
              />
              <View style={styles.rightContainer}>
                   <Text style={styles.title}>{results.title}</Text>
-                  <Text style={styles.year}>{results.release_date}</Text>
-                  <Text style={styles.year}>{results.vote_average}</Text>
+                  <Text style={styles.year}>{'Ratings: '+results.vote_average}
+                        {'\t\t\tPopularity: '+results.popularity}</Text>
+                  <Text style={styles.year}>{'Release Date: '+results.release_date}</Text>
              </View>
        </View>
-      );
-      var content = (
-        <View style={styles.rightContainer}>
-              <Text style={styles.title}>{results.title}</Text>
-              <Text style={styles.year}>{results.release_date}</Text>
-              <Text style={styles.year}>{results.vote_average}</Text>
-        </View>
+
+//       var REQUEST_DATA_URL = 'https://api.themoviedb.org/3/movie/'+results.id+'?api_key=5b0ea911a68feb390b90a878c64da594&order=0';
 
       );
+   var content = (
+                   <View style={styles.bottomContainer}>
+                      <Text style={styles.contentHead}>{'Overview: '}</Text>
+                      <Text style={styles.content}>{results.overview}</Text>
+                </View>) ;
+
       return (
         <Accordion
           header={header}
@@ -112,6 +114,7 @@ export default class AwesomeProject extends Component {
 //      </View>
 //    );
   }
+
 }
 
 var styles = StyleSheet.create({
@@ -121,25 +124,46 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    padding: 8,
+    padding: 2,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
   },
   rightContainer: {
     flex: 1,
-    backgroundColor: '#e0e1e2',
   },
+  bottomContainer: {
+      flex: 1,
+      backgroundColor: '#ededed',
+    },
   title: {
     fontSize: 16,
     marginLeft: 8,
     marginBottom: 8,
+    fontWeight: 'bold',
     textAlign: 'left',
   },
   year: {
+    fontSize: 12,
+    color: '#3b3e42',
     marginLeft: 8,
     textAlign: 'left',
   },
+  contentHead: {
+        fontSize: 12,
+        color: '#3b3e42',
+        marginLeft: 8,
+        textAlign: 'left',
+        fontWeight: 'bold',
+      },
+  content: {
+      fontSize: 12,
+      color: '#3b3e42',
+      marginLeft: 8,
+      textAlign: 'left',
+    },
   thumbnail: {
     width: 56,
-    height: 72,
+    height: 80,
   },
   listView: {
     paddingTop: 8,
