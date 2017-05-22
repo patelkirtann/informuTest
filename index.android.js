@@ -78,41 +78,31 @@ export default class AwesomeProject extends Component {
              />
              <View style={styles.rightContainer}>
                   <Text style={styles.title}>{results.title}</Text>
-                  <Text style={styles.year}>{'Ratings: '+results.vote_average}
+                  <Text style={styles.subText}>{'Ratings: '+results.vote_average}
                         {'\t\t\tPopularity: '+results.popularity}</Text>
-                  <Text style={styles.year}>{'Release Date: '+results.release_date}</Text>
+                  <Text style={styles.subText}>{'Release Date: '+results.release_date}</Text>
              </View>
-       </View>
+       </View>);
 
-//       var REQUEST_DATA_URL = 'https://api.themoviedb.org/3/movie/'+results.id+'?api_key=5b0ea911a68feb390b90a878c64da594&order=0';
+       var content = (
+             <View style={styles.bottomContainer}>
+                  <Text style={styles.contentHead}>{'Overview: '}</Text>
+                  <Text style={styles.content}>{'\t\t\t'+results.overview}</Text>
 
-      );
-   var content = (
-                   <View style={styles.bottomContainer}>
-                      <Text style={styles.contentHead}>{'Overview: '}</Text>
-                      <Text style={styles.content}>{results.overview}</Text>
-                </View>) ;
+                  <Text style={styles.contentHead}>{'ID: '}</Text>
+                  <Text style={styles.content}>{'\t\t\t'+results.id}</Text>
 
-      return (
-        <Accordion
-          header={header}
-          content={content}
-          easing="easeOutCubic"
-        />
-      );
-//    return (
-//      <View style={styles.container}>
-//        <Image
-//          source={{uri: 'https://image.tmdb.org/t/p/w500'+results.poster_path}}
-//          style={styles.thumbnail}
-//        />
-//        <View style={styles.rightContainer}>
-//          <Text style={styles.title}>{results.title}</Text>
-//          <Text style={styles.year}>{results.release_date}</Text>
-//          <Text style={styles.year}>{results.vote_average}</Text>
-//        </View>
-//      </View>
-//    );
+                  <Text style={styles.contentHead}>{'Vote Count: '}</Text>
+                  <Text style={styles.content}>{'\t\t\t'+results.vote_count}</Text>
+                </View>);
+
+       return (
+              <Accordion
+                  header={header}
+                  content={content}
+                  easing="easeOutCubic"
+              />
+       );
   }
 
 }
@@ -123,17 +113,18 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#d3d3d3',
     padding: 2,
     borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    borderColor: '#808080',
   },
   rightContainer: {
     flex: 1,
   },
   bottomContainer: {
       flex: 1,
-      backgroundColor: '#ededed',
+      backgroundColor: '#696969',
+      paddingBottom: 8,
     },
   title: {
     fontSize: 16,
@@ -142,7 +133,7 @@ var styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
   },
-  year: {
+  subText: {
     fontSize: 12,
     color: '#3b3e42',
     marginLeft: 8,
@@ -150,14 +141,14 @@ var styles = StyleSheet.create({
   },
   contentHead: {
         fontSize: 12,
-        color: '#3b3e42',
+        color: '#ffffff',
         marginLeft: 8,
         textAlign: 'left',
         fontWeight: 'bold',
       },
   content: {
       fontSize: 12,
-      color: '#3b3e42',
+      color: '#d3d3d3',
       marginLeft: 8,
       textAlign: 'left',
     },
@@ -167,7 +158,8 @@ var styles = StyleSheet.create({
   },
   listView: {
     paddingTop: 8,
-    backgroundColor: '#F5FCFF',
+    paddingBottom: 8,
+    backgroundColor: '#d3d3d3',
   },
 });
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
